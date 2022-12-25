@@ -1,0 +1,93 @@
+2022-12-25 00:11:21.673 [http-nio-8001-exec-1] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30035ms.
+### The error may exist in com/qxw/eduservice/mapper/EduTeacherMapper.java (best guess)
+### The error may involve com.qxw.eduservice.mapper.EduTeacherMapper.selectPage
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30035ms.
+2022-12-25 00:11:50.949 [http-nio-8001-exec-4] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - Required request body is missing: public com.qxw.commonutils.R com.qxw.eduservice.controller.EduTeacherController.addTeacher(com.qxw.eduservice.entity.EduTeacher)
+2022-12-25 00:12:55.894 [http-nio-8001-exec-10] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - Required request body is missing: public com.qxw.commonutils.R com.qxw.eduservice.controller.EduTeacherController.addTeacher(com.qxw.eduservice.entity.EduTeacher)
+2022-12-25 00:14:25.657 [http-nio-8001-exec-5] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - Required request body is missing: public com.qxw.commonutils.R com.qxw.eduservice.controller.EduTeacherController.addTeacher(com.qxw.eduservice.entity.EduTeacher)
+2022-12-25 00:17:09.242 [http-nio-8001-exec-6] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - Required request body is missing: public com.qxw.commonutils.R com.qxw.eduservice.controller.EduTeacherController.addTeacher(com.qxw.eduservice.entity.EduTeacher)
+2022-12-25 00:17:11.600 [http-nio-8001-exec-7] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30082ms.
+### The error may exist in com/qxw/eduservice/mapper/EduTeacherMapper.java (best guess)
+### The error may involve com.qxw.eduservice.mapper.EduTeacherMapper.selectPage
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30082ms.
+2022-12-25 00:17:48.669 [http-nio-8001-exec-8] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - Required request body is missing: public com.qxw.commonutils.R com.qxw.eduservice.controller.EduTeacherController.addTeacher(com.qxw.eduservice.entity.EduTeacher)
+2022-12-25 00:22:02.399 [http-nio-8001-exec-2] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - Could not open JDBC Connection for transaction; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30046ms.
+2022-12-25 00:32:57.627 [http-nio-8001-exec-7] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30035ms.
+### The error may exist in com/qxw/eduservice/mapper/EduTeacherMapper.java (best guess)
+### The error may involve com.qxw.eduservice.mapper.EduTeacherMapper.selectPage
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30035ms.
+2022-12-25 00:40:40.621 [http-nio-8001-exec-9] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30059ms.
+### The error may exist in com/qxw/eduservice/mapper/EduTeacherMapper.java (best guess)
+### The error may involve com.qxw.eduservice.mapper.EduTeacherMapper.selectPage
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30059ms.
+2022-12-25 13:21:33.892 [http-nio-8001-exec-7] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - Could not open JDBC Connection for transaction; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30046ms.
+2022-12-25 13:22:00.130 [http-nio-8001-exec-8] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '测试头像上传' for key 'uk_name'
+### The error may involve com.qxw.eduservice.mapper.EduTeacherMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_teacher  ( id, name, intro, career, level, avatar, sort,  gmt_create, gmt_modified )  VALUES  ( ?, ?, ?, ?, ?, ?, ?,  ?, ? )
+### Cause: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '测试头像上传' for key 'uk_name'
+; Duplicate entry '测试头像上传' for key 'uk_name'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '测试头像上传' for key 'uk_name'
+2022-12-25 15:09:22.573 [http-nio-8001-exec-1] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30073ms.
+### The error may exist in com/qxw/eduservice/mapper/EduSubjectMapper.java (best guess)
+### The error may involve com.qxw.eduservice.mapper.EduSubjectMapper.selectList
+### The error occurred while executing a query
+### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLTransientConnectionException: HikariPool-1 - Connection is not available, request timed out after 30073ms.
+2022-12-25 17:05:33.389 [http-nio-8001-exec-9] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+### The error may involve com.qxw.eduservice.mapper.EduCourseMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_course  ( id, teacher_id, subject_id,  title, price, lesson_num, cover,      gmt_create, gmt_modified )  VALUES  ( ?, ?, ?,  ?, ?, ?, ?,      ?, ? )
+### Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+; Field 'subject_parent_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+2022-12-25 17:12:18.640 [http-nio-8001-exec-1] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+### The error may involve com.qxw.eduservice.mapper.EduCourseMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_course  ( id, teacher_id, subject_id, title, price, lesson_num, cover,      gmt_create, gmt_modified )  VALUES  ( ?, ?, ?, ?, ?, ?, ?,      ?, ? )
+### Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+; Field 'subject_parent_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+2022-12-25 17:16:39.069 [http-nio-8001-exec-9] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+### The error may involve com.qxw.eduservice.mapper.EduCourseMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_course  ( id, teacher_id, subject_id,  title, price, lesson_num, cover,      gmt_create, gmt_modified )  VALUES  ( ?, ?, ?,  ?, ?, ?, ?,      ?, ? )
+### Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+; Field 'subject_parent_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+2022-12-25 17:34:32.601 [http-nio-8001-exec-8] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+### The error may involve com.qxw.eduservice.mapper.EduCourseMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_course  ( id, teacher_id, subject_id,  title, price, lesson_num, cover,      gmt_create, gmt_modified )  VALUES  ( ?, ?, ?,  ?, ?, ?, ?,      ?, ? )
+### Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+; Field 'subject_parent_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+2022-12-25 17:35:54.158 [http-nio-8001-exec-9] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLException: Field 'gmt_create' doesn't have a default value
+### The error may involve com.qxw.eduservice.mapper.EduCourseDescriptionMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_course_description  ( id, description )  VALUES  ( ?, ? )
+### Cause: java.sql.SQLException: Field 'gmt_create' doesn't have a default value
+; Field 'gmt_create' doesn't have a default value; nested exception is java.sql.SQLException: Field 'gmt_create' doesn't have a default value
+2022-12-25 18:24:05.411 [http-nio-8001-exec-9] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+### The error may involve com.qxw.eduservice.mapper.EduCourseMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_course  ( id, teacher_id, subject_id,  title, price, lesson_num, cover,      gmt_create, gmt_modified )  VALUES  ( ?, ?, ?,  ?, ?, ?, ?,      ?, ? )
+### Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+; Field 'subject_parent_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+2022-12-25 18:26:25.580 [http-nio-8001-exec-10] ERROR c.q.s.exceptionhandler.GlobalExceptionHandler - 
+### Error updating database.  Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+### The error may involve com.qxw.eduservice.mapper.EduCourseMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: INSERT INTO edu_course  ( id, teacher_id, subject_id,  title, price, lesson_num, cover,      gmt_create, gmt_modified )  VALUES  ( ?, ?, ?,  ?, ?, ?, ?,      ?, ? )
+### Cause: java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
+; Field 'subject_parent_id' doesn't have a default value; nested exception is java.sql.SQLException: Field 'subject_parent_id' doesn't have a default value
