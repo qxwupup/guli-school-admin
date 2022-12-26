@@ -51,7 +51,8 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
             for (EduVideo eduVideo : eduVideoList) {
                 if(eduChapter.getId().equals(eduVideo.getChapterId())){
                     VideoVo videoVo = new VideoVo();
-                    BeanUtils.copyProperties(videoVo,eduVideo);
+                    BeanUtils.copyProperties(eduVideo,videoVo);
+                    videoVo.setFree(eduVideo.getIsFree());
                     children.add(videoVo);
                 }
             }
@@ -59,5 +60,17 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
             finallList.add(chapterVo);
         }
         return finallList;
+    }
+
+    @Override
+    public boolean deleteChapter(String chapterId) {
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id",chapterId);
+        int count = videoService.count(wrapper);
+        if(count==0){
+            int i = baseMapper.deleteById(chapterId);
+            return i>0;
+        }
+        return false;
     }
 }
