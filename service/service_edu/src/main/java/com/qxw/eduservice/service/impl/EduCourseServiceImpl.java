@@ -5,9 +5,11 @@ import com.qxw.eduservice.entity.EduCourseDescription;
 import com.qxw.eduservice.entity.vo.CourseInfoVo;
 import com.qxw.eduservice.entity.vo.CoursePublishVo;
 import com.qxw.eduservice.mapper.EduCourseMapper;
+import com.qxw.eduservice.service.EduChapterService;
 import com.qxw.eduservice.service.EduCourseDescriptionService;
 import com.qxw.eduservice.service.EduCourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.qxw.eduservice.service.EduVideoService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,15 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     private EduCourseDescriptionService courseDescriptionService;
+
+    @Autowired
+    private EduVideoService videoService;
+
+    @Autowired
+    private EduChapterService chapterService;
+
+
+
 
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) {
@@ -68,5 +79,18 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     @Override
     public CoursePublishVo publishCourseInfo(String courseId) {
         return baseMapper.getPublishCourseInfo(courseId);
+    }
+
+    @Override
+    public boolean removeCourse(String courseId) {
+
+        boolean video = videoService.removeByCourseId(courseId);
+
+        boolean chapter = chapterService.removeByCourseId(courseId);
+
+        boolean description = courseDescriptionService.removeById(courseId);
+
+        int course = baseMapper.deleteById(courseId);
+        return course>0 && description && chapter && video;
     }
 }
