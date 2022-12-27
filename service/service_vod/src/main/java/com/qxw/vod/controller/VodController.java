@@ -1,9 +1,8 @@
-package com.qxw.oss.controller;
+package com.qxw.vod.controller;
 
 import com.qxw.commonutils.result.R;
-import com.qxw.oss.service.OssService;
+import com.qxw.vod.service.VodService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,19 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/eduoss/fileoss")
+@RequestMapping("/eduvod/video")
 @CrossOrigin
-public class OssController {
+public class VodController {
 
     @Autowired
-    private OssService ossService;
+    private VodService vodService;
 
-    @PostMapping
-    public R uploadOssFile(MultipartFile file){
+    @PostMapping("/uploadVideo")
+    public R uploadVideo(MultipartFile file){
 
-        String url =  ossService.uploadFileAvatar(file);
+        String videoId = vodService.uploadVideo(file);
 
-        return StringUtils.isEmpty(url)?R.error().data("url",url):R.ok().data("url",url);
+        return R.ok().data("videoId",videoId);
     }
-
 }

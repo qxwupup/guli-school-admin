@@ -5,7 +5,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
 import com.qxw.oss.service.OssService;
-import com.qxw.oss.utils.ConstantPropertiesUtils;
+import com.qxw.oss.utils.AliyunConstantPropertiesUtils;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,16 +20,16 @@ public class OssServiceImpl implements OssService {
 
     @Override
     public String uploadFileAvatar(MultipartFile file) {
-        String endpoint = ConstantPropertiesUtils.END_POINT;
-        String accessKeyId = ConstantPropertiesUtils.ACCESS_KEY_ID;
-        String accessKeySecret = ConstantPropertiesUtils.ACCESS_KEY_SECRET;
-        String bucketName = ConstantPropertiesUtils.BUCKET_NAME;
-        String filePath = ConstantPropertiesUtils.FILE_PATH;
+        String endpoint = AliyunConstantPropertiesUtils.END_POINT;
+        String accessKeyId = AliyunConstantPropertiesUtils.ACCESS_KEY_ID;
+        String accessKeySecret = AliyunConstantPropertiesUtils.ACCESS_KEY_SECRET;
+        String bucketName = AliyunConstantPropertiesUtils.BUCKET_NAME;
+        String filePath = AliyunConstantPropertiesUtils.FILE_PATH;
 
         String uuid = UUID.randomUUID().toString().replaceAll("-","");
         String datePath = new DateTime().toString("yyyy-MM-dd");
-
-        String fileName = filePath+"/"+datePath+"/"+uuid+file.getOriginalFilename();
+        String fileName = file.getOriginalFilename();
+        fileName = filePath+"/"+datePath+"/"+uuid+fileName.substring(fileName.lastIndexOf("."));
 
 
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);

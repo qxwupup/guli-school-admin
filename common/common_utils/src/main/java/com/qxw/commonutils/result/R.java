@@ -1,4 +1,4 @@
-package com.qxw.commonutils;
+package com.qxw.commonutils.result;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

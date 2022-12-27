@@ -1,6 +1,6 @@
 package com.qxw.eduservice.controller;
 
-import com.qxw.commonutils.R;
+import com.qxw.commonutils.result.R;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

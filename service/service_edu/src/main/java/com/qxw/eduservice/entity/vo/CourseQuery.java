@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class CourseQuery {
 
-    private String name;
+    private String title;
     private String status;
 
 }

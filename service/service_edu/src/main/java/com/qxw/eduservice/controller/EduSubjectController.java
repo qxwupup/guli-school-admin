@@ -1,7 +1,7 @@
 package com.qxw.eduservice.controller;
 
 
-import com.qxw.commonutils.R;
+import com.qxw.commonutils.result.R;
 import com.qxw.eduservice.entity.subject.OneSubject;
 import com.qxw.eduservice.service.EduSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;

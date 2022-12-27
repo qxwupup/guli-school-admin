@@ -4,14 +4,12 @@ package com.qxw.eduservice.controller;
 import com.alibaba.excel.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.qxw.commonutils.R;
+import com.qxw.commonutils.result.R;
 import com.qxw.eduservice.constants.CourseStatus;
 import com.qxw.eduservice.entity.EduCourse;
-import com.qxw.eduservice.entity.EduTeacher;
 import com.qxw.eduservice.entity.vo.CourseInfoVo;
 import com.qxw.eduservice.entity.vo.CoursePublishVo;
 import com.qxw.eduservice.entity.vo.CourseQuery;
-import com.qxw.eduservice.entity.vo.TeacherQuery;
 import com.qxw.eduservice.service.EduCourseService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +39,7 @@ public class EduCourseController {
     public R pageTeacherCondition(@PathVariable Long current, @PathVariable Long size, @RequestBody(required = false) CourseQuery courseQuery) {
         Page<EduCourse> pageCourse = new Page<>(current, size);
         QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
-        wrapper.like(!org.springframework.util.StringUtils.isEmpty(courseQuery.getName()), "title", courseQuery.getName());
+        wrapper.like(!org.springframework.util.StringUtils.isEmpty(courseQuery.getTitle()), "title", courseQuery.getTitle());
         wrapper.eq(!org.springframework.util.StringUtils.isEmpty(courseQuery.getStatus()), "status", courseQuery.getStatus());
         courseService.page(pageCourse, wrapper);
         long total = pageCourse.getTotal();

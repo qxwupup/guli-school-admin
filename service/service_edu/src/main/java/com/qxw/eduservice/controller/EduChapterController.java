@@ -1,7 +1,7 @@
 package com.qxw.eduservice.controller;
 
 
-import com.qxw.commonutils.R;
+import com.qxw.commonutils.result.R;
 import com.qxw.eduservice.entity.EduChapter;
 import com.qxw.eduservice.entity.chapter.ChapterVo;
 import com.qxw.eduservice.service.EduChapterService;

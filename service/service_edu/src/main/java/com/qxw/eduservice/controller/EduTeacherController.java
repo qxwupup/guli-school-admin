@@ -2,9 +2,8 @@ package com.qxw.eduservice.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.qxw.commonutils.R;
+import com.qxw.commonutils.result.R;
 import com.qxw.eduservice.entity.EduTeacher;
 import com.qxw.eduservice.entity.vo.TeacherQuery;
 import com.qxw.eduservice.service.EduTeacherService;

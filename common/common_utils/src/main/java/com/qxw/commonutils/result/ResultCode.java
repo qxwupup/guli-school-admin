@@ -1,4 +1,4 @@
-package com.qxw.commonutils;
+package com.qxw.commonutils.result;
 
 public interface ResultCode {
     public static Integer SUCCESS = 20000;//成功
