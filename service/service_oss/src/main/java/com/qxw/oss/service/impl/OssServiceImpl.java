@@ -29,7 +29,7 @@ public class OssServiceImpl implements OssService {
         String uuid = UUID.randomUUID().toString().replaceAll("-","");
         String datePath = new DateTime().toString("yyyy-MM-dd");
         String fileName = file.getOriginalFilename();
-        fileName = filePath+"/"+datePath+"/"+uuid+fileName.substring(fileName.lastIndexOf("."));
+        fileName = filePath+datePath+"/"+uuid+fileName.substring(fileName.lastIndexOf("."));
 
 
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
