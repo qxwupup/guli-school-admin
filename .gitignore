@@ -33,4 +33,4 @@ build/
 .vscode/
 /logs/
 /.mvn/
-/service/service_vod/src/main/resources/aliyunconfig/
+
