@@ -50,8 +50,11 @@ public class EduChapterController {
 
     @DeleteMapping("/{chapterId}")
     public R deleteChapter(@PathVariable String chapterId){
+        //此处为何不写删除小节视频？
+        //因为现在删除规则是，章节下没有小节，才能进行章节删除
+        //所以删除章节时，不需要考虑删除小节及其下视频信息
         boolean flag = chapterService.deleteChapter(chapterId);
-        return flag?R.ok():R.error();
+        return flag?R.ok():R.error().message("删除失败，还有小节未删除");
     }
 
 }

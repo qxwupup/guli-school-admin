@@ -3,12 +3,18 @@ package com.qxw.vod.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.qxw.commonutils.result.R;
 import com.qxw.vod.service.VodService;
 import com.qxw.vod.utils.AliyunConstantPropertiesUtils;
+import com.qxw.vod.utils.InitVodClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VodServiceImpl implements VodService {
@@ -40,6 +46,20 @@ public class VodServiceImpl implements VodService {
         }catch (Exception e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public boolean removeVideoBatch(List<String> videoIdList) {
+        try {
+            DefaultAcsClient client = InitVodClient.initVodClient(AliyunConstantPropertiesUtils.ACCESS_KEY_ID, AliyunConstantPropertiesUtils.ACCESS_KEY_SECRET);
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            request.setVideoIds(videoIdList.stream().collect(Collectors.joining(",")));
+            client.getAcsResponse(request);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/eduvod/video")
 @CrossOrigin
@@ -19,24 +21,30 @@ public class VodController {
     private VodService vodService;
 
     @PostMapping("/uploadVideo")
-    public R uploadVideo(MultipartFile file){
+    public R uploadVideo(MultipartFile file) {
 
         String videoId = vodService.uploadVideo(file);
 
-        return R.ok().data("videoId",videoId);
+        return R.ok().data("videoId", videoId);
     }
 
     @DeleteMapping("/remove/{videoId}")
-    public R removeVideo(@PathVariable String videoId){
-       try {
-           DefaultAcsClient client = InitVodClient.initVodClient(AliyunConstantPropertiesUtils.ACCESS_KEY_ID, AliyunConstantPropertiesUtils.ACCESS_KEY_SECRET);
-           DeleteVideoRequest request= new DeleteVideoRequest();
-           request.setVideoIds(videoId);
-           client.getAcsResponse(request);
-           return R.ok();
-       }catch (Exception e){
-           e.printStackTrace();
-           return R.error();
-       }
+    public R removeVideo(@PathVariable String videoId) {
+        try {
+            DefaultAcsClient client = InitVodClient.initVodClient(AliyunConstantPropertiesUtils.ACCESS_KEY_ID, AliyunConstantPropertiesUtils.ACCESS_KEY_SECRET);
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            request.setVideoIds(videoId);
+            client.getAcsResponse(request);
+            return R.ok();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return R.error();
+        }
+    }
+
+    @DeleteMapping("/remove/batch")
+    public R removeBatchVideo(@RequestParam("videoIdList") List<String> videoIdList) {
+        boolean flag = vodService.removeVideoBatch(videoIdList);
+        return flag?R.ok():R.error();
     }
 }
