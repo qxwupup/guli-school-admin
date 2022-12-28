@@ -2,10 +2,12 @@ package com.qxw.oss.utils;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@PropertySource(value = "classpath:aliyunconfig/aliyun.properties")
 public class AliyunConstantPropertiesUtils implements InitializingBean {
 
     @Value("${aliyun.oss.file.endpoint}")
