@@ -1,7 +1,8 @@
 package com.qxw.servicebase.exceptionhandler;
 
 
-import com.qxw.commonutils.result.R;
+
+import com.qxw.common.core.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,10 +14,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public R error(Exception e){
+    public Result<?> error(Exception e){
         log.error(e.getMessage());
         e.printStackTrace();
-        return R.error().message("全局异常").data("message",e.getMessage());
+        return Result.error("全局异常");
     }
 
 }
