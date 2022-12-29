@@ -1,7 +1,7 @@
 package com.qxw.eduservice.controller;
 
 
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import com.qxw.eduservice.entity.EduChapter;
 import com.qxw.eduservice.entity.chapter.ChapterVo;
 import com.qxw.eduservice.service.EduChapterService;
@@ -27,34 +27,34 @@ public class EduChapterController {
     private EduChapterService chapterService;
 
     @GetMapping("/getChapterVideo/{courseId}")
-    public R getChapterVideo(@PathVariable String courseId){
+    public Result<?> getChapterVideo(@PathVariable String courseId){
         List<ChapterVo> list = chapterService.getChapterVideoByCourseId(courseId);
-        return R.ok().data("allChapterVideo",list);
+        return Result.builder().put("allChapterVideo",list).build();
     }
 
     @PostMapping("/addChapter")
-    public R addChapter(@RequestBody EduChapter eduChapter){
-        return chapterService.save(eduChapter)? R.ok():R.error();
+    public Result<?> addChapter(@RequestBody EduChapter eduChapter){
+        return Result.status(chapterService.save(eduChapter));
     }
 
     @GetMapping("/getChaperInfo/{chapterId}")
-    public R getChaperInfo(@PathVariable String chapterId){
+    public Result<?> getChaperInfo(@PathVariable String chapterId){
         EduChapter eduChapter = chapterService.getById(chapterId);
-        return R.ok().data("chapter",eduChapter);
+        return Result.builder().put("chapter",eduChapter).build();
     }
 
     @PostMapping("/updateChapter")
-    public R updateChapter(@RequestBody EduChapter eduChapter){
-        return chapterService.updateById(eduChapter)? R.ok():R.error();
+    public Result<?> updateChapter(@RequestBody EduChapter eduChapter){
+        return Result.status(chapterService.updateById(eduChapter));
     }
 
     @DeleteMapping("/{chapterId}")
-    public R deleteChapter(@PathVariable String chapterId){
+    public Result<?> deleteChapter(@PathVariable String chapterId){
         //此处为何不写删除小节视频？
         //因为现在删除规则是，章节下没有小节，才能进行章节删除
         //所以删除章节时，不需要考虑删除小节及其下视频信息
         boolean flag = chapterService.deleteChapter(chapterId);
-        return flag?R.ok():R.error().message("删除失败，还有小节未删除");
+        return Result.success(flag);
     }
 
 }

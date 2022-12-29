@@ -2,7 +2,7 @@ package com.qxw.vod.controller;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import com.qxw.vod.service.VodService;
 import com.qxw.vod.utils.AliyunConstantPropertiesUtils;
 import com.qxw.vod.utils.InitVodClient;
@@ -21,30 +21,30 @@ public class VodController {
     private VodService vodService;
 
     @PostMapping("/uploadVideo")
-    public R uploadVideo(MultipartFile file) {
+    public Result<?> uploadVideo(MultipartFile file) {
 
         String videoId = vodService.uploadVideo(file);
 
-        return R.ok().data("videoId", videoId);
+        return Result.builder().put("videoId", videoId).build();
     }
 
     @DeleteMapping("/remove/{videoId}")
-    public R removeVideo(@PathVariable String videoId) {
+    public Result<?> removeVideo(@PathVariable String videoId) {
         try {
             DefaultAcsClient client = InitVodClient.initVodClient(AliyunConstantPropertiesUtils.ACCESS_KEY_ID, AliyunConstantPropertiesUtils.ACCESS_KEY_SECRET);
             DeleteVideoRequest request = new DeleteVideoRequest();
             request.setVideoIds(videoId);
             client.getAcsResponse(request);
-            return R.ok();
+            return Result.success("刪除视频成功");
         } catch (Exception e) {
             e.printStackTrace();
-            return R.error();
+            return Result.fail("刪除视频失败");
         }
     }
 
     @DeleteMapping("/remove/batch")
-    public R removeBatchVideo(@RequestParam("videoIdList") List<String> videoIdList) {
+    public Result<?> removeBatchVideo(@RequestParam("videoIdList") List<String> videoIdList) {
         boolean flag = vodService.removeVideoBatch(videoIdList);
-        return flag?R.ok():R.error();
+        return Result.status(flag);
     }
 }

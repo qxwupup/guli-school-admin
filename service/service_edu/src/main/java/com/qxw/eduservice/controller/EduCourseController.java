@@ -1,10 +1,9 @@
 package com.qxw.eduservice.controller;
 
 
-import com.alibaba.excel.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import com.qxw.eduservice.constants.CourseStatus;
 import com.qxw.eduservice.entity.EduCourse;
 import com.qxw.eduservice.entity.vo.CourseInfoVo;
@@ -36,7 +35,7 @@ public class EduCourseController {
     //课程列表
     @ApiOperation(value = "带条件的分页查询课程表数据")
     @PostMapping("/pageCourseCondition/{current}/{size}")
-    public R pageTeacherCondition(@PathVariable Long current, @PathVariable Long size, @RequestBody(required = false) CourseQuery courseQuery) {
+    public Result<?> pageTeacherCondition(@PathVariable Long current, @PathVariable Long size, @RequestBody(required = false) CourseQuery courseQuery) {
         Page<EduCourse> pageCourse = new Page<>(current, size);
         QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
         wrapper.like(!org.springframework.util.StringUtils.isEmpty(courseQuery.getTitle()), "title", courseQuery.getTitle());
@@ -44,47 +43,47 @@ public class EduCourseController {
         courseService.page(pageCourse, wrapper);
         long total = pageCourse.getTotal();
         List<EduCourse> records = pageCourse.getRecords();
-        return R.ok().data("total", total).data("rows", records);
+        return Result.builder().put("total", total).put("rows", records).build();
     }
 
     @PostMapping("/addCourseInfo")
-    public R addCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
+    public Result<?> addCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
 
         String id = courseService.saveCourseInfo(courseInfoVo);
 
-        return !StringUtils.isEmpty(id) ? R.ok().data("courseId", id) : R.error().data("courseId", id);
+        return Result.builder().put("courseId", id).build() ;
     }
 
     @GetMapping("/getCourseInfo/{courseId}")
-    public R getCourseInfo(@PathVariable String courseId) {
+    public Result<?> getCourseInfo(@PathVariable String courseId) {
         CourseInfoVo courseInfoVo = courseService.getCourseInfo(courseId);
-        return R.ok().data("courseInfoVo", courseInfoVo);
+        return Result.builder().put("courseInfoVo", courseInfoVo).build();
     }
 
     @PostMapping("/updateCourseInfo")
-    public R updateCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
+    public Result<?> updateCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
         boolean flag = courseService.updateCourseInfo(courseInfoVo);
-        return flag ? R.ok() : R.error();
+        return Result.status(flag);
     }
 
     @GetMapping("/getPublishCourseInfo/{courseId}")
-    public R getPublishCourseInfo(@PathVariable String courseId) {
+    public Result<?> getPublishCourseInfo(@PathVariable String courseId) {
         CoursePublishVo coursePublishVo = courseService.publishCourseInfo(courseId);
-        return R.ok().data("publishCourse", coursePublishVo);
+        return Result.builder().put("publishCourse", coursePublishVo).build();
     }
 
     @PostMapping("/publishCourse/{courseId}")
-    public R publishCourse(@PathVariable String courseId) {
+    public Result<?> publishCourse(@PathVariable String courseId) {
         EduCourse eduCourse = new EduCourse();
         eduCourse.setId(courseId);
         eduCourse.setStatus(CourseStatus.COURSE_STATUS_NORMAL);
-        return courseService.updateById(eduCourse) ? R.ok() : R.error();
+        return Result.status(courseService.updateById(eduCourse));
     }
 
     @DeleteMapping("/{courseId}")
-    public R deleteCourse(@PathVariable String courseId) {
+    public Result<?> deleteCourse(@PathVariable String courseId) {
         boolean flag = courseService.removeCourse(courseId);
-        return flag ? R.ok() : R.error();
+        return Result.status(flag);
     }
 }
 

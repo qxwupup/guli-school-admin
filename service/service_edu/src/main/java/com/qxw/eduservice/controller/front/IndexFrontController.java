@@ -1,8 +1,7 @@
 package com.qxw.eduservice.controller.front;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import com.qxw.eduservice.entity.EduCourse;
 import com.qxw.eduservice.entity.EduTeacher;
 import com.qxw.eduservice.service.EduCourseService;
@@ -27,7 +26,7 @@ public class IndexFrontController {
     private EduTeacherService teacherService;
 
     @GetMapping("/index")
-    public R indexInfo(){
+    public Result<?> indexInfo(){
 
         //按课程浏览数进行前8排序，并在首页展示
         QueryWrapper<EduCourse> courseWrapper = new QueryWrapper<>();
@@ -41,7 +40,7 @@ public class IndexFrontController {
         courseWrapper.last("limit 4");
         List<EduTeacher> eduTeachers = teacherService.list(teacherWrapper);
 
-        return R.ok().data("eduList",eduCourses).data("teacherList",eduTeachers);
+        return  Result.builder().put("eduList",eduCourses).put("teacherList",eduTeachers).build();
     }
 
 }

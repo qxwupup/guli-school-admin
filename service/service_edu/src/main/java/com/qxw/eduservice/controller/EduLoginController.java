@@ -1,6 +1,6 @@
 package com.qxw.eduservice.controller;
 
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,15 +10,15 @@ public class EduLoginController {
 
     //login
     @PostMapping("/login")
-    public R login(){
+    public Result<?> login(){
 
-        return R.ok().data("token","admin");
+        return Result.builder().put("token","admin").build();
     }
 
     //info
     @GetMapping("/info")
-    public R info(){
+    public Result<?> info(){
 
-        return R.ok().data("roles","[admin]").data("name","admin").data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        return Result.builder().put("roles","[admin]").put("name","admin").put("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif").build();
     }
 }

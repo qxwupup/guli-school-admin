@@ -1,12 +1,11 @@
 package com.qxw.eduservice.controller;
 
 
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import com.qxw.eduservice.entity.subject.OneSubject;
 import com.qxw.eduservice.service.EduSubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -28,15 +27,15 @@ public class EduSubjectController {
     private EduSubjectService subjectService;
 
     @PostMapping("/addSubject")
-    public R addSubject(MultipartFile file) {
+    public Result<?> addSubject(MultipartFile file) {
         boolean flag = subjectService.saveSubject(file, subjectService);
-        return flag ? R.ok() : R.error();
+        return Result.status(flag);
     }
 
     @GetMapping("/getAllSubject")
-    public R getAllSubject(){
+    public Result<?> getAllSubject(){
         List<OneSubject> list = subjectService.getAllOneTwoSubject();
-        return R.ok().data("list",list);
+        return Result.builder().put("list",list).build();
     }
 }
 

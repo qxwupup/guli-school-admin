@@ -1,11 +1,10 @@
 package com.qxw.cmsservice.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qxw.cmsservice.entity.CrmBanner;
 import com.qxw.cmsservice.service.CrmBannerService;
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,32 +25,32 @@ public class BannerAdminController {
     private CrmBannerService bannerService;
 
     @GetMapping("/pageBanner/{current}/{size}")
-    public R pageBanner(@PathVariable Long current,@PathVariable Long size){
+    public Result<?> pageBanner(@PathVariable Long current, @PathVariable Long size){
 
         Page<CrmBanner> pageBanner = new Page<>(current,size);
         bannerService.page(pageBanner, null);
-        return R.ok().data("items",pageBanner.getRecords()).data("total",pageBanner.getTotal());
+        return Result.builder().put("items",pageBanner.getRecords()).put("total",pageBanner.getTotal()).build();
     }
 
     @GetMapping("/get/{bannerId}")
-    public R getBanner(@PathVariable String bannerId){
+    public Result<?> getBanner(@PathVariable String bannerId){
         CrmBanner banner = bannerService.getById(bannerId);
-        return R.ok().data("item",banner);
+        return Result.builder().put("item",banner).build();
     }
 
     @PostMapping("/addBanner")
-    public R addBanner(@RequestBody CrmBanner crmBanner){
-        return bannerService.save(crmBanner)?R.ok():R.error();
+    public Result<?> addBanner(@RequestBody CrmBanner crmBanner){
+        return Result.status(bannerService.save(crmBanner));
     }
 
     @PostMapping("/updateBanner")
-    public R updateBanner(@RequestBody CrmBanner crmBanner){
-        return bannerService.updateById(crmBanner)?R.ok():R.error();
+    public Result<?> updateBanner(@RequestBody CrmBanner crmBanner){
+        return Result.status(bannerService.updateById(crmBanner));
     }
 
     @DeleteMapping("/remove/{bannerId}")
-    public R removeBanner(@PathVariable String bannerId){
-        return bannerService.removeById(bannerId)?R.ok():R.error();
+    public Result<?> removeBanner(@PathVariable String bannerId){
+        return Result.status(bannerService.removeById(bannerId));
     }
 
 }

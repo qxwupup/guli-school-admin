@@ -4,6 +4,7 @@ import com.qxw.cmsservice.entity.CrmBanner;
 import com.qxw.cmsservice.mapper.CrmBannerMapper;
 import com.qxw.cmsservice.service.CrmBannerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner> implements CrmBannerService {
 
     @Override
+    @Cacheable(value = "banner",key="'selectIndexList'")
     public List<CrmBanner> selectAllBanner() {
         return baseMapper.selectList(null);
     }

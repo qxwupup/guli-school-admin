@@ -1,9 +1,8 @@
 package com.qxw.oss.controller;
 
-import com.qxw.commonutils.result.R;
+import com.qxw.common.core.result.Result;
 import com.qxw.oss.service.OssService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +18,11 @@ public class OssController {
     private OssService ossService;
 
     @PostMapping
-    public R uploadOssFile(MultipartFile file){
+    public Result<?> uploadOssFile(MultipartFile file){
 
         String url =  ossService.uploadFileAvatar(file);
 
-        return StringUtils.isEmpty(url)?R.error().data("url",url):R.ok().data("url",url);
+        return Result.builder().put("url",url).build();
     }
 
 }
