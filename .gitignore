@@ -36,3 +36,6 @@ build/
 /service/service_vod/src/main/resources/aliyunconfig/aliyun.properties
 /service/service_oss/src/main/resources/aliyunconfig/aliyun.properties
 /service/service_cms/src/main/resources/config/redis.properties
+/service/service_msm/src/main/resources/config/redis.properties
+/service/service_msm/src/main/resources/config/aliyun.properties
+/service/service_ucenter/src/main/resources/config/redis.properties

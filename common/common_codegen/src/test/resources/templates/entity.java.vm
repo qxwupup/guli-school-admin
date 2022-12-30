@@ -51,9 +51,6 @@ private static final long serialVersionUID=1L;
         /**
          * $!{field.comment}
          */
-            #if($!{swagger2})
-             @Schema(description = "$!{field.comment}")
-            #end
         #end
         #if($!{field.keyFlag})
             ## 主键

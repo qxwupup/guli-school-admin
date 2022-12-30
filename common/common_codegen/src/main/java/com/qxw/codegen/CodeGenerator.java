@@ -91,7 +91,7 @@ public class CodeGenerator {
     /**
      * 是否启用swagger
      */
-    private Boolean isSwagger2 = Boolean.TRUE;
+    private Boolean isSwagger2 = Boolean.FALSE;
 
     public void run() {
         Properties props = getProperties();
@@ -109,7 +109,7 @@ public class CodeGenerator {
         gc.setBaseColumnList(true);
         gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
-        gc.setServiceName("I%sService");
+        gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
         gc.setControllerName("%sController");
         gc.setSwagger2(isSwagger2);
@@ -164,7 +164,7 @@ public class CodeGenerator {
         pc.setParent(packageName);
         pc.setController("controller");
         pc.setEntity("entity");
-        pc.setXml("mapper");
+        pc.setXml("mapper/xml");
         mpg.setPackageInfo(pc);
         InjectionConfig injectionConfig = getInjectionConfig();
         mpg.setCfg(injectionConfig);

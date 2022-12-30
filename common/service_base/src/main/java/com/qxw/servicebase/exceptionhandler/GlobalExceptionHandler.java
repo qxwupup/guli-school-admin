@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     public Result<?> error(Exception e){
         log.error(e.getMessage());
         e.printStackTrace();
-        return Result.error("全局异常");
+        return Result.error(e.getMessage());
     }
 
 }

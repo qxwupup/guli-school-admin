@@ -28,5 +28,5 @@ public interface $!{table.mapperName} extends $!{superMapperClass}<$!{entity}> {
     ##	 */
     ##	List<$!{entity}VO> select$!{entity}Page(IPage page, $!{entity}VO $!{table.entityPath});
 
-        }
+}
 #end
