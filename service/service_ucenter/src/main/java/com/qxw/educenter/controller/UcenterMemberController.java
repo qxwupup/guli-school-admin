@@ -1,11 +1,15 @@
 package com.qxw.educenter.controller;
 
 import com.qxw.common.core.result.Result;
+import com.qxw.common.core.utils.JwtUtils;
+import com.qxw.educenter.entity.UcenterMember;
+import com.qxw.educenter.entity.vo.LoginVo;
 import com.qxw.educenter.entity.vo.RegisterVo;
 import com.qxw.educenter.service.UcenterMemberService;
-import com.qxw.educenter.entity.vo.LoginVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 会员表 控制器
@@ -46,6 +50,13 @@ public class UcenterMemberController {
     }
 
 
+    @GetMapping("/get/info")
+    public Result<?> getMemberInfo(HttpServletRequest request){
+        String memberId = JwtUtils.getMemberIdByJwtToken(request);
 
+        UcenterMember member = memberService.getById(memberId);
+
+        return  Result.data(member);
+    }
 
 }
