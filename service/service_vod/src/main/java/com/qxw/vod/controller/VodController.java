@@ -2,9 +2,9 @@ package com.qxw.vod.controller;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.qxw.common.core.config.AliyunConstantProperties;
 import com.qxw.common.core.result.Result;
 import com.qxw.vod.service.VodService;
-import com.qxw.vod.utils.AliyunConstantPropertiesUtils;
 import com.qxw.vod.utils.InitVodClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,7 @@ public class VodController {
     @DeleteMapping("/remove/{videoId}")
     public Result<?> removeVideo(@PathVariable String videoId) {
         try {
-            DefaultAcsClient client = InitVodClient.initVodClient(AliyunConstantPropertiesUtils.ACCESS_KEY_ID, AliyunConstantPropertiesUtils.ACCESS_KEY_SECRET);
+            DefaultAcsClient client = InitVodClient.initVodClient(AliyunConstantProperties.ACCESS_KEY_ID, AliyunConstantProperties.ACCESS_KEY_SECRET);
             DeleteVideoRequest request = new DeleteVideoRequest();
             request.setVideoIds(videoId);
             client.getAcsResponse(request);

@@ -8,8 +8,8 @@ import com.aliyun.tea.TeaException;
 import com.aliyun.teaopenapi.models.Config;
 import com.aliyun.teautil.Common;
 import com.aliyun.teautil.models.RuntimeOptions;
+import com.qxw.common.core.config.AliyunConstantProperties;
 import com.qxw.msmservice.service.MsmService;
-import com.qxw.msmservice.utils.AliyunConstantPropertiesUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -23,9 +23,9 @@ public class MsmServiceImpl implements MsmService {
         try {
             Config config = new com.aliyun.teaopenapi.models.Config()
                     // 必填，您的 AccessKey ID
-                    .setAccessKeyId(AliyunConstantPropertiesUtils.ACCESS_KEY_ID)
+                    .setAccessKeyId(AliyunConstantProperties.ACCESS_KEY_ID)
                     // 必填，您的 AccessKey Secret
-                    .setAccessKeySecret(AliyunConstantPropertiesUtils.ACCESS_KEY_SECRET);
+                    .setAccessKeySecret(AliyunConstantProperties.ACCESS_KEY_SECRET);
             // 访问的域名
             config.endpoint = "dysmsapi.aliyuncs.com";
 
@@ -33,8 +33,8 @@ public class MsmServiceImpl implements MsmService {
 
             // 工程代码泄露可能会导致AccessKey泄露，并威胁账号下所有资源的安全性。以下代码示例仅供参考，建议使用更安全的 STS 方式，更多鉴权访问方式请参见：https://help.aliyun.com/document_detail/378657.html
             SendSmsRequest sendSmsRequest = new SendSmsRequest()
-                    .setSignName(AliyunConstantPropertiesUtils.SIGN_NAME)
-                    .setTemplateCode(AliyunConstantPropertiesUtils.TEMPLATE_CODE)
+                    .setSignName(AliyunConstantProperties.SIGN_NAME)
+                    .setTemplateCode(AliyunConstantProperties.TEMPLATE_CODE)
                     .setPhoneNumbers(phone)
                     .setTemplateParam(JSONObject.toJSONString(param));
             RuntimeOptions runtime = new RuntimeOptions();
