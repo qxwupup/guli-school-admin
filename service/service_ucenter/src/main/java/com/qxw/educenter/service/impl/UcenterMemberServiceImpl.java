@@ -77,7 +77,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
 
         QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
         wrapper.eq("mobile",mobile);
-        Integer count = baseMapper.selectCount(wrapper);
+        long count = baseMapper.selectCount(wrapper);
         if(count>0){
             throw new RuntimeException("已存在该手机号的用户");
         }

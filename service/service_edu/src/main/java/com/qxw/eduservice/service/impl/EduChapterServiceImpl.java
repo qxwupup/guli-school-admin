@@ -66,7 +66,7 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
     public boolean deleteChapter(String chapterId) {
         QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
         wrapper.eq("chapter_id",chapterId);
-        int count = videoService.count(wrapper);
+        long count = videoService.count(wrapper);
         if(count==0){
             int i = baseMapper.deleteById(chapterId);
             return i>0;

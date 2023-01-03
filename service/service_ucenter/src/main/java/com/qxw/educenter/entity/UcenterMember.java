@@ -22,7 +22,7 @@ public class UcenterMember implements Serializable {
     /**
      * 会员id
      */
-    @TableId(value = "id", type = IdType.ID_WORKER_STR)
+    @TableId(value = "id", type = IdType.ASSIGN_UUID)
     private String id;
     /**
      * 微信openid
