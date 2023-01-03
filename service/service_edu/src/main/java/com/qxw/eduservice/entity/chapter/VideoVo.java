@@ -7,7 +7,8 @@ public class VideoVo {
 
     private String id;
 
-    private Boolean free;
     private String title;
+
+    private String videoSourceId;
 
 }

@@ -5,7 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qxw.eduservice.entity.EduCourse;
 import com.qxw.eduservice.entity.EduCourseDescription;
-import com.qxw.eduservice.entity.vo.CourseFrontVo;
+import com.qxw.eduservice.entity.frontvo.CourseDetailVo;
+import com.qxw.eduservice.entity.frontvo.CourseFrontVo;
 import com.qxw.eduservice.entity.vo.CourseInfoVo;
 import com.qxw.eduservice.entity.vo.CoursePublishVo;
 import com.qxw.eduservice.mapper.EduCourseMapper;
@@ -122,5 +123,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         map.put("hasNext",coursePage.hasNext());
         map.put("hasPrevious",coursePage.hasPrevious());
         return map;
+    }
+
+    @Override
+    public CourseDetailVo getCourseFrontInfo(String courseId) {
+        return baseMapper.getCourseFrontInfo(courseId);
     }
 }

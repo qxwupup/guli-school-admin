@@ -51,7 +51,7 @@ public class VodServiceImpl implements VodService {
     @Override
     public boolean removeVideoBatch(List<String> videoIdList) {
         try {
-            DefaultAcsClient client = InitVodClient.initVodClient(AliyunConstantProperties.ACCESS_KEY_ID, AliyunConstantProperties.ACCESS_KEY_SECRET);
+            DefaultAcsClient client = InitVodClient.initVodClient();
             DeleteVideoRequest request = new DeleteVideoRequest();
             request.setVideoIds(videoIdList.stream().collect(Collectors.joining(",")));
             client.getAcsResponse(request);

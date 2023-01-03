@@ -2,10 +2,12 @@ package com.qxw.educenter.controller;
 
 import com.qxw.common.core.result.Result;
 import com.qxw.common.core.utils.JwtUtils;
+import com.qxw.common.core.vo.OrderMemberVo;
 import com.qxw.educenter.entity.UcenterMember;
 import com.qxw.educenter.entity.vo.LoginVo;
 import com.qxw.educenter.entity.vo.RegisterVo;
 import com.qxw.educenter.service.UcenterMemberService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +59,14 @@ public class UcenterMemberController {
         UcenterMember member = memberService.getById(memberId);
 
         return  Result.data(member);
+    }
+
+    @GetMapping("/order/info/{memberId}")
+    public Result<OrderMemberVo> getMemberInfo(@PathVariable String memberId){
+        UcenterMember member = memberService.getById(memberId);
+        OrderMemberVo res = new OrderMemberVo();
+        BeanUtils.copyProperties(member,res);
+        return  Result.data(res);
     }
 
 }

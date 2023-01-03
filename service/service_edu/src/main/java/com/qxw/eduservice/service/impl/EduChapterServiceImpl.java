@@ -52,7 +52,7 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
                 if(eduChapter.getId().equals(eduVideo.getChapterId())){
                     VideoVo videoVo = new VideoVo();
                     BeanUtils.copyProperties(eduVideo,videoVo);
-                    videoVo.setFree(eduVideo.getIsFree());
+                    //videoVo.setFree(eduVideo.getIsFree());
                     children.add(videoVo);
                 }
             }

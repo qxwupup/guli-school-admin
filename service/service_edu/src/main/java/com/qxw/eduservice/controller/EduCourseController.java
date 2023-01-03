@@ -4,13 +4,16 @@ package com.qxw.eduservice.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qxw.common.core.result.Result;
+import com.qxw.common.core.vo.OrderCourseVo;
 import com.qxw.eduservice.constants.CourseStatus;
 import com.qxw.eduservice.entity.EduCourse;
+import com.qxw.eduservice.entity.frontvo.CourseDetailVo;
 import com.qxw.eduservice.entity.vo.CourseInfoVo;
 import com.qxw.eduservice.entity.vo.CoursePublishVo;
 import com.qxw.eduservice.entity.vo.CourseQuery;
 import com.qxw.eduservice.service.EduCourseService;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +35,7 @@ public class EduCourseController {
     @Autowired
     private EduCourseService courseService;
 
-    //课程列表
+
     @ApiOperation(value = "带条件的分页查询课程表数据")
     @PostMapping("/pageCourseCondition/{current}/{size}")
     public Result<?> pageTeacherCondition(@PathVariable Long current, @PathVariable Long size, @RequestBody(required = false) CourseQuery courseQuery) {
@@ -84,6 +87,14 @@ public class EduCourseController {
     public Result<?> deleteCourse(@PathVariable String courseId) {
         boolean flag = courseService.removeCourse(courseId);
         return Result.status(flag);
+    }
+
+    @GetMapping("/order/info/{courseId}")
+    public Result<OrderCourseVo> getOrderCourseInfo(@PathVariable String courseId){
+        CourseDetailVo course = courseService.getCourseFrontInfo(courseId);
+        OrderCourseVo res = new OrderCourseVo();
+        BeanUtils.copyProperties(course,res);
+        return  Result.data(res);
     }
 }
 
