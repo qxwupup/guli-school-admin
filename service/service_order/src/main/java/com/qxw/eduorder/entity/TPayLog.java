@@ -21,7 +21,7 @@ public class TPayLog implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.ASSIGN_UUID)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
     /**
      * 订单号
@@ -30,7 +30,7 @@ public class TPayLog implements Serializable {
     /**
      * 支付完成时间
      */
-    private LocalDateTime payTime;
+    private Date payTime;
     /**
      * 支付金额（分）
      */

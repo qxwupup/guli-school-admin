@@ -1,9 +1,11 @@
 package com.qxw.eduorder.controller;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.qxw.common.core.result.Result;
+import com.qxw.eduorder.service.TOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +13,7 @@ import com.qxw.eduorder.entity.TPayLog;
 import com.qxw.eduorder.service.TPayLogService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 支付日志表 控制器
@@ -19,78 +22,37 @@ import java.util.List;
  * @since 2023-01-03
  */
 @RestController
-@RequestMapping("/")
+@RequestMapping("/eduorder/pay")
+@CrossOrigin
 public class TPayLogController {
     @Autowired
-    private TPayLogService tPayLogService;
+    private TPayLogService payLogService;
 
+    @GetMapping("/create/QRCode/{orderNo}")
+    public Result<?> createRQCode(@PathVariable String orderNo){
 
-    /**
-     * 详情
-     */
+       Map<String,String> map =  payLogService.createQRCode(orderNo);
 
-    @GetMapping("/detail")
-    public Result<?> detail(TPayLog tPayLog) {
-        TPayLog detail = tPayLogService.getOne(new QueryWrapper<>(tPayLog));
-        return Result.data(detail);
+        return Result.data(map);
     }
 
-    /**
-     * 列表 支付日志表
-     */
+    @GetMapping("/query/status/{orderNo}")
+    public Result<?> queryStatus(@PathVariable String orderNo){
 
-    @GetMapping("/list")
-    public Result<?> list(TPayLog tPayLog) {
-        List<TPayLog> list = tPayLogService.list(new QueryWrapper<>(tPayLog));
-        return Result.data(list);
-    }
+        Map<String,String> map =  payLogService.queryPayStatus(orderNo);
 
-    /**
-     * 分页 支付日志表
-     */
+        if(CollUtil.isEmpty(map)){
+            return Result.error("支付失败");
+        }
 
-    @GetMapping("/page/{current}/{size}")
-    public Result<?> page(@PathVariable Long current, @PathVariable Long size, @RequestBody TPayLog tPayLog) {
-        Page<TPayLog> page = new Page<>(current, size);
-        QueryWrapper<TPayLog> wrapper = new QueryWrapper<>();
-        tPayLogService.page(page, wrapper);
-        return Result.data(page);
-    }
+        if(StrUtil.equalsIgnoreCase("SUCCESS",map.get("trade_state"))){
 
+            boolean flag = payLogService.updateOrderStatus(map);
 
-    /**
-     * 新增 支付日志表
-     */
+            return  Result.status(flag);
+        }
 
-    @PostMapping
-    public Result<?> save(@RequestBody TPayLog tPayLog) {
-        return Result.status(tPayLogService.save(tPayLog));
-    }
-
-    /**
-     * 修改 支付日志表
-     */
-    @PutMapping
-    public Result<?> update(@RequestBody TPayLog tPayLog) {
-        return Result.status(tPayLogService.updateById(tPayLog));
-    }
-
-    /**
-     * 新增或修改 支付日志表
-     */
-
-    @PostMapping("/submit")
-    public Result<?> submit(@RequestBody TPayLog tPayLog) {
-        return Result.status(tPayLogService.saveOrUpdate(tPayLog));
-    }
-
-
-    /**
-     * 删除 支付日志表
-     */
-    @DeleteMapping
-    public Result<?> remove(@RequestParam String ids) {
-        return Result.status(tPayLogService.removeByIds(StrUtil.splitTrim(ids, StrUtil.C_COMMA)));
+        return Result.error("支付中...");
     }
 
 }

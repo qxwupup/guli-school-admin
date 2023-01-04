@@ -113,6 +113,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
                 .orderByDesc(StrUtil.isNotEmpty(vo.getGmtCreateSort()),"gmt_create")
                 .orderByDesc(StrUtil.isNotEmpty(vo.getPriceSort()),"price");
 
+
         baseMapper.selectPage(coursePage,wrapper);
         Map<String, Object> map = new HashMap<>();
         map.put("items",coursePage.getRecords());

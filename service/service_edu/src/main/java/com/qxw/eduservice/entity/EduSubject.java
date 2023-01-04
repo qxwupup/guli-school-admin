@@ -29,7 +29,7 @@ public class EduSubject implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "课程类别ID")
-    @TableId(value = "id", type = IdType.ASSIGN_UUID)
+    @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
 
     @ApiModelProperty(value = "类别名称")

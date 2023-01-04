@@ -37,5 +37,11 @@ public class TOrderController {
         return Result.data(orderService.getOne(wrapper));
     }
 
+    //TODO  查询用户是否购买过某个课程
+    @GetMapping("/isbuy/{courseId}/{memberId}")
+    public  Result<Boolean> isBuy(@PathVariable String courseId,@PathVariable String memberId){
+        Long count = orderService.lambdaQuery().eq(TOrder::getCourseId, courseId).eq(TOrder::getMemberId, memberId).eq(TOrder::getStatus, 1).count();
+        return Result.data(count>0);
+    }
 
 }

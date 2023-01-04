@@ -1,5 +1,6 @@
 package com.qxw.eduorder.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.qxw.common.core.vo.OrderCourseVo;
 import com.qxw.common.core.vo.OrderMemberVo;
 import com.qxw.eduorder.entity.TOrder;
@@ -31,22 +32,32 @@ public class TOrderServiceImpl extends ServiceImpl<TOrderMapper, TOrder> impleme
 
     @Override
     public String createOrder(String courseId, String memberId) {
+        if(StrUtil.isEmpty(memberId)){
+            throw new RuntimeException("请登录");
+        }
+
+        if(StrUtil.isEmpty(courseId)){
+            throw new RuntimeException("请选择课程");
+        }
+
         OrderMemberVo member = memberClient.getMemberInfo(memberId).getData();
         OrderCourseVo course = courseClient.getOrderCourseInfo(courseId).getData();
 
         TOrder order = new TOrder();
-        order.setOrderNo(OrderNoUtil.getOrderNo());
-        order.setCourseId(courseId);
-        order.setCourseTitle(course.getTitle());
-        order.setCourseCover(course.getCover());
-        order.setTeacherName(course.getTeacherName());
-        order.setTotalFee(course.getPrice());
-        order.setMemberId(memberId);
-        order.setMobile(member.getMobile());
-        order.setNickname(member.getNickname());
-        order.setStatus(0);
-        order.setPayType(1);
-        baseMapper.insert(order);
+        if(member!=null && course!=null){
+            order.setOrderNo(OrderNoUtil.getOrderNo());
+            order.setCourseId(courseId);
+            order.setCourseTitle(course.getTitle());
+            order.setCourseCover(course.getCover());
+            order.setTeacherName(course.getTeacherName());
+            order.setTotalFee(course.getPrice());
+            order.setMemberId(memberId);
+            order.setMobile(member.getMobile());
+            order.setNickname(member.getNickname());
+            order.setStatus(0);
+            order.setPayType(1);
+            baseMapper.insert(order);
+        }
         //返回订单号
         return order.getOrderNo();
     }
