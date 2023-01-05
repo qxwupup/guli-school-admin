@@ -15,6 +15,7 @@
         <module>service_base</module>
         <module>common_core</module>
         <module>common_codegen</module>
+        <module>service_security</module>
     </modules>
 
     <properties>

@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-public final class MD5 {
+public final class MD5Utils {
 
     public static String encrypt(String strSrc) {
         try {
@@ -30,7 +30,7 @@ public final class MD5 {
     }
 
     public static void main(String[] args) {
-        System.out.println(MD5.encrypt("111111"));
+        System.out.println(MD5Utils.encrypt("111111"));
     }
 
 }

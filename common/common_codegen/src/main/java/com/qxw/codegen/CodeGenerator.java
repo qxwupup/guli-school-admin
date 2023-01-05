@@ -24,7 +24,6 @@ import java.util.*;
 /**
  * 代码生成器配置类
  *
- * @author Chill
  */
 @Data
 @Slf4j

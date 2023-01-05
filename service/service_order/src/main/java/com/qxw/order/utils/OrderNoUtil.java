@@ -7,8 +7,6 @@ import java.util.Random;
 /**
  * 订单号工具类
  *
- * @author qy
- * @since 1.0
  */
 public class OrderNoUtil {
 

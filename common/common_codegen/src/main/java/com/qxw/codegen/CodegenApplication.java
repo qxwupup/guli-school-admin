@@ -1,9 +1,6 @@
 package com.qxw.codegen;
 
-/**
- * @Author zhaogx
- * @Date 2020/11/2 9:48
- */
+
 public class CodegenApplication {
     /**
      * 代码生成的模块名

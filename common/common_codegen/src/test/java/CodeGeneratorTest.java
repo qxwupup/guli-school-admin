@@ -2,8 +2,7 @@ import com.qxw.codegen.CodeGenerator;
 
 /**
  * 代码生成器
- *
- * @author Chill
+
  */
 public class CodeGeneratorTest {
 

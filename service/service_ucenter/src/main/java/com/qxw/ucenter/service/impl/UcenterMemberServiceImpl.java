@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qxw.common.core.utils.JwtUtils;
-import com.qxw.common.core.utils.MD5;
+import com.qxw.common.core.utils.MD5Utils;
 import com.qxw.ucenter.entity.UcenterMember;
 import com.qxw.ucenter.entity.vo.RegisterVo;
 import com.qxw.ucenter.mapper.UcenterMemberMapper;
@@ -45,7 +45,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
             throw new RuntimeException("不存在该手机号的用户");
         }
 
-        if(!StrUtil.equals(MD5.encrypt(password),memberByPhone.getPassword())){
+        if(!StrUtil.equals(MD5Utils.encrypt(password),memberByPhone.getPassword())){
             throw new RuntimeException("密码错误");
         }
 
@@ -82,7 +82,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
             throw new RuntimeException("已存在该手机号的用户");
         }
         UcenterMember member = new UcenterMember();
-        registerVo.setPassword(MD5.encrypt(password));
+        registerVo.setPassword(MD5Utils.encrypt(password));
         BeanUtils.copyProperties(registerVo,member);
 
         return this.save(member);
