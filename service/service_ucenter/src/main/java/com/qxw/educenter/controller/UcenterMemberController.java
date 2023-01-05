@@ -69,4 +69,13 @@ public class UcenterMemberController {
         return  Result.data(res);
     }
 
+
+    @GetMapping("/register/count/{day}")
+    public Result<Integer> registerCount(@PathVariable String day){
+
+        Integer count =  memberService.registerCountByDay(day);
+
+        return Result.data(count);
+    }
+
 }

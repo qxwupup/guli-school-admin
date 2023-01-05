@@ -18,6 +18,12 @@
         <result column="gmt_create" property="gmtCreate"/>
         <result column="gmt_modified" property="gmtModified"/>
     </resultMap>
+    <select id="registerCountByDay" resultType="java.lang.Integer">
+
+       SELECT COUNT(*) FROM  ucenter_member uc
+       WHERE DATE(uc.gmt_create)=#{day}
+
+    </select>
 
 
 </mapper>

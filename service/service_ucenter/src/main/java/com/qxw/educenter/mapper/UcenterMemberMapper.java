@@ -11,5 +11,5 @@ import com.qxw.educenter.entity.UcenterMember;
  */
 public interface UcenterMemberMapper extends BaseMapper<UcenterMember> {
 
-
+    Integer registerCountByDay(String day);
 }

@@ -18,7 +18,7 @@ public class CodeGeneratorTest {
     /**
      * 代码生成的包名
      */
-    public static String PACKAGE_NAME = "com.qxw.eduorder";
+    public static String PACKAGE_NAME = "com.qxw.statistics";
     /**
      * 前端代码生成所属系统
      */
@@ -34,7 +34,7 @@ public class CodeGeneratorTest {
     /**
      * 需要生成的表名(两者只能取其一)
      */
-    public static String[] INCLUDE_TABLES = {"t_pay_log"};
+    public static String[] INCLUDE_TABLES = {"statistics_daily"};
     /**
      * 需要排除的表名(两者只能取其一)
      */

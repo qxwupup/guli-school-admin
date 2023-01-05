@@ -94,4 +94,9 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         wrapper.eq("openid",openid);
         return baseMapper.selectOne(wrapper);
     }
+
+    @Override
+    public Integer registerCountByDay(String day) {
+        return baseMapper.registerCountByDay(day);
+    }
 }
