@@ -5,6 +5,7 @@
     <modules>
         <module>service</module>
         <module>common</module>
+        <module>guli_gateway</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -46,6 +47,8 @@
         <docker.image.prefix>zx</docker.image.prefix>
         <cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
         <hutool.version>5.8.8</hutool.version>
+        <knife4j.version>3.0.3</knife4j.version>
+        <springdoc.version>1.6.9</springdoc.version>
     </properties>
 
 
@@ -81,13 +84,25 @@
                 <version>${velocity.version}</version>
             </dependency>
 
-
+            <!--hu-tool工具包-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-bom</artifactId>
                 <version>${hutool.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-springdoc-ui</artifactId>
+                <!--在引用时请在maven中央仓库搜索3.X最新版本号-->
+                <version>${knife4j.version}</version>
             </dependency>
 
             <!--swagger-->

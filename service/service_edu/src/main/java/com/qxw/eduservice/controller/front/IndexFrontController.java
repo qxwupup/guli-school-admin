@@ -6,6 +6,8 @@ import com.qxw.eduservice.entity.EduCourse;
 import com.qxw.eduservice.entity.EduTeacher;
 import com.qxw.eduservice.service.EduCourseService;
 import com.qxw.eduservice.service.EduTeacherService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/eduservice/front")
-@CrossOrigin
+@Tag(name = "前端获取课程，讲师展示信息相关接口", description = "前端获取课程，讲师展示信息相关接口")
 public class IndexFrontController {
 
     @Autowired
@@ -26,6 +28,7 @@ public class IndexFrontController {
     private EduTeacherService teacherService;
 
     @GetMapping("/index")
+    @Operation(summary = "获取课程，讲师展示信息", description = "获取课程，讲师展示信息")
     public Result<?> indexInfo(){
 
         //按课程浏览数进行前8排序，并在首页展示

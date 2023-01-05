@@ -10,6 +10,8 @@ import com.qxw.eduservice.entity.frontvo.CourseFrontVo;
 import com.qxw.eduservice.feignclient.OrderClient;
 import com.qxw.eduservice.service.EduChapterService;
 import com.qxw.eduservice.service.EduCourseService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +21,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/eduservice/front/course")
-@CrossOrigin
+@Tag(name = "前端获取课程信息相关接口", description = "前端获取课程信息相关接口")
 public class CourseFrontController {
 
     @Autowired
@@ -32,6 +34,7 @@ public class CourseFrontController {
     private OrderClient orderClient;
 
     @PostMapping("/page/{current}/{size}")
+    @Operation(summary = "带条件的分页查询课程信息", description = "带条件的分页查询课程信息")
     public Result<?> getFrontCourse(@PathVariable Long current,
                                     @PathVariable Long size,
                                     @RequestBody(required = false) CourseFrontVo courseFrontVo){
@@ -43,6 +46,7 @@ public class CourseFrontController {
     }
 
     @GetMapping("/info/{courseId}")
+    @Operation(summary = "根据课程ID，获取课程相关信息", description = "根据课程ID，获取课程相关信息")
     public Result<?> getCourseInfo(@PathVariable String courseId, HttpServletRequest request){
 
         CourseDetailVo courseDetailVo = courseService.getCourseFrontInfo(courseId);

@@ -3,6 +3,7 @@ package com.qxw.statistics.controller;
 import com.qxw.common.core.result.Result;
 import com.qxw.statistics.feignclient.MemberStatisticsClient;
 import com.qxw.statistics.service.StatisticsDailyService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +15,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/staservice/statistics")
-@CrossOrigin
+@Tag(name = "统计分析相关接口", description = "统计分析相关接口")
 public class StatisticsDailyController {
 
-    //TODO  统计分析需换种方式重做，不使用@Scheduled
+    /**
+     *  TODO  统计分析需换种方式重做，不使用@Scheduled
+     */
     @Autowired
     private MemberStatisticsClient memberStatisticsClient;
 
